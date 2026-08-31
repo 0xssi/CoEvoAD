@@ -200,7 +200,7 @@ If you find this work useful, please cite:
 @inproceedings{coevoad2026,
   title     = {Co-Evolutionary Prompt Optimization with Cross-Category Transfer
                for Zero-Shot Anomaly Detection},
-  author    = {TODO: camera-ready author list},
+  author    = {Zhu, Sisi and Yu, Changwei and Tao, Renshuai and Ni, Zhenliang},
   booktitle = {Proceedings of the 2026 Conference on Empirical Methods in
                Natural Language Processing},
   year      = {2026},
