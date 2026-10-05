@@ -178,9 +178,26 @@ To dump such maps from your own runs, add `--save_visualizations` to either test
 
 ## Download Weights
 
-Pretrained checkpoints and searched rule caches will be released here shortly.
+The Step-1 prompt-bank checkpoints and Step-2 searched rule caches behind the paper's main results (Tables 1–2), for both transfer directions, are published as a [GitHub Release](https://github.com/rstao-bjtu/CoEvoAD/releases/tag/v1.0) (55 MB):
 
-Until then, everything can be reproduced from scratch with the commands above. Once released, place the files anywhere and pass their paths via `--checkpoint_path` and `--evo_rules_path`.
+```bash
+wget https://github.com/rstao-bjtu/CoEvoAD/releases/download/v1.0/coevoad_weights_v1.tar.gz
+echo "1a6c97a6c0a3b47d56bfce3b7c9b0640b949f5aaf6f0ae8f9d96263fd1b2de41  coevoad_weights_v1.tar.gz" | sha256sum -c
+mkdir -p my_exps && tar -xzf coevoad_weights_v1.tar.gz -C my_exps/
+```
+
+This yields the layout that [test.sh](test.sh) expects:
+
+```
+my_exps
+├── train_visa/two_stage_final.pth       # Step 1, source = VisA
+├── train_mvtec/two_stage_final.pth      # Step 1, source = MVTec-AD
+├── coevo_visa/evo_prompt_cache.json     # Step 2, source = VisA
+├── coevo_mvtec/evo_prompt_cache.json    # Step 2, source = MVTec-AD
+└── MANIFEST.txt                         # per-file sha256
+```
+
+Then run `bash test.sh visa 0` (VisA → MVTec-AD) or `bash test.sh mvtec 0` (MVTec-AD → VisA). Alternatively, place the files anywhere and pass their paths via `--checkpoint_path` and `--evo_rules_path`.
 
 ## Acknowledgements
 
